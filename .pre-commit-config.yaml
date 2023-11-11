@@ -1,0 +1,20 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+# 利用したいhookを設置したリポジトリごとに設定を記載する
+repos:
+  # github上のパブリックなhookを利用する場合
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-added-large-files
+
+  # ローカルで定義したhookを利用する(この設定ファイル内にhookの内容を直接書く)場合
+  - repo: local
+    hooks:
+      - id: check-lint
+        name: check-lint
+        entry: npm run lint
+        language: node
+        pass_filenames: false # デフォルトでは引数にコミットしたファイル名が渡される
+        always_run: true
